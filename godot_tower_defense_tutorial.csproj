@@ -1,0 +1,6 @@
+<Project Sdk="Godot.NET.Sdk/4.0.0-dev6">
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework>
+    <LangVersion>10</LangVersion>
+  </PropertyGroup>
+</Project>
