@@ -13,7 +13,6 @@ public partial class SceneHandler : Node
     public override void _Process(float delta)
     {
     }
-
 }
 
 

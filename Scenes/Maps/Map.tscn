@@ -1,13 +1,16 @@
-[gd_scene load_steps=12 format=3 uid="uid://cglesm4bjo0s4"]
+[gd_scene load_steps=15 format=3 uid="uid://cglesm4bjo0s4"]
 
-[ext_resource type="Texture2D" uid="uid://bgb7yfgp2ui47" path="res://Assets/Environments/Tilesets/terrainTiles_default.png" id="1_rwu13"]
-[ext_resource type="Texture2D" uid="uid://cojouoom5uwyg" path="res://Assets/Environments/Props/treeBrown_large.png" id="2_yyud0"]
-[ext_resource type="Texture2D" uid="uid://cv2ba53a1g1xh" path="res://Assets/Environments/Props/treeGreen_large.png" id="3_35m7t"]
-[ext_resource type="Texture2D" uid="uid://cibaw6pgv4uvt" path="res://Assets/Environments/Props/crateMetal.png" id="4_m5yko"]
-[ext_resource type="Texture2D" uid="uid://c5movf1f7vlxu" path="res://Assets/Environments/Props/crateWood.png" id="5_0uspc"]
+[ext_resource type="Texture2D" uid="uid://bgb7yfgp2ui47" path="res://Assets/Environments/Tilesets/terrainTiles_default.png" id="1_aga08"]
+[ext_resource type="Texture2D" uid="uid://cojouoom5uwyg" path="res://Assets/Environments/Props/treeBrown_large.png" id="2_dpsy2"]
+[ext_resource type="Texture2D" uid="uid://cv2ba53a1g1xh" path="res://Assets/Environments/Props/treeGreen_large.png" id="3_cd041"]
+[ext_resource type="Texture2D" uid="uid://cibaw6pgv4uvt" path="res://Assets/Environments/Props/crateMetal.png" id="4_vufsc"]
+[ext_resource type="Texture2D" uid="uid://c5movf1f7vlxu" path="res://Assets/Environments/Props/crateWood.png" id="5_7n4ad"]
+[ext_resource type="PackedScene" uid="uid://hoo4sc7bofde" path="res://Scenes/Towers/GunT1.tscn" id="6_dgrwm"]
+[ext_resource type="PackedScene" uid="uid://bsgx35otcj4ky" path="res://Scenes/Towers/GunT2.tscn" id="7_sm3t5"]
+[ext_resource type="PackedScene" uid="uid://b8f4coo461dis" path="res://Scenes/Towers/MissileT1.tscn" id="8_am2us"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cr6q8"]
-texture = ExtResource( "1_rwu13" )
+texture = ExtResource( "1_aga08" )
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
 0:1/0 = 0
@@ -63,22 +66,22 @@ texture_region_size = Vector2i(64, 64)
 6:1/0/terrains_peering_bit/top_side = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_u5p40"]
-texture = ExtResource( "2_yyud0" )
+texture = ExtResource( "2_dpsy2" )
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3xbb5"]
-texture = ExtResource( "3_35m7t" )
+texture = ExtResource( "3_cd041" )
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gvlna"]
-texture = ExtResource( "4_m5yko" )
+texture = ExtResource( "4_vufsc" )
 texture_region_size = Vector2i(28, 28)
 0:0/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rh0w5"]
-texture = ExtResource( "5_0uspc" )
+texture = ExtResource( "5_7n4ad" )
 texture_region_size = Vector2i(28, 28)
 0:0/0 = 0
 
@@ -112,17 +115,21 @@ layer_2/y_sort_enabled = false
 layer_2/y_sort_origin = 0
 layer_2/z_index = 0
 layer_2/tile_data = PackedInt32Array(458754, 5, 0, 131072, 5, 0, 196615, 5, 0, 786433, 5, 0, 851975, 3, 0, 655362, 3, 0, 524293, 3, 0, 65540, 3, 0, 327681, 6, 0, 196612, 6, 0, 655367, 6, 0, 851972, 7, 0, 131077, 7, 0, 589825, 7, 0)
-layer_3/name = "Walls"
+layer_3/name = "Towers"
 layer_3/enabled = true
 layer_3/modulate = Color(1, 1, 1, 1)
 layer_3/y_sort_enabled = false
 layer_3/y_sort_origin = 0
 layer_3/z_index = 0
 layer_3/tile_data = PackedInt32Array()
-layer_4/name = "Towers"
-layer_4/enabled = true
-layer_4/modulate = Color(1, 1, 1, 1)
-layer_4/y_sort_enabled = false
-layer_4/y_sort_origin = 0
-layer_4/z_index = 0
-layer_4/tile_data = PackedInt32Array()
+
+[node name="Towers" type="Node" parent="."]
+
+[node name="GunT1" parent="Towers" instance=ExtResource( "6_dgrwm" )]
+position = Vector2(110, 252)
+
+[node name="GunT2" parent="Towers" instance=ExtResource( "7_sm3t5" )]
+position = Vector2(206, 368)
+
+[node name="MissileT1" parent="Towers" instance=ExtResource( "8_am2us" )]
+position = Vector2(462, 433)
