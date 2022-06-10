@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://wlee3slh1dov"]
+
+[ext_resource type="Texture2D" uid="uid://jkhiqw6u7m46" path="res://Assets/UI/Art/BackGround.png" id="1_e83ka"]
+
+[node name="MainMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Background" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( "1_e83ka" )
+ignore_texture_size = true
