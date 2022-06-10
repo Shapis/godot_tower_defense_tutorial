@@ -1,0 +1,88 @@
+[gd_scene load_steps=5 format=3 uid="uid://cvss6jxrv56sp"]
+
+[ext_resource type="PackedScene" uid="uid://cglesm4bjo0s4" path="res://Scenes/Maps/Map.tscn" id="1_sfkm7"]
+[ext_resource type="Texture2D" uid="uid://dw0p3weriujyl" path="res://Assets/UI/Buttons/blue_button12.png" id="2_bjkfu"]
+[ext_resource type="Texture2D" uid="uid://fltof5jqhd6d" path="res://Assets/Entities/Towers/towerDefense_tile249.png" id="3_vct74"]
+[ext_resource type="Texture2D" uid="uid://va16gvf6g5so" path="res://Assets/Entities/Towers/towerDefense_tile251.png" id="4_dw0pu"]
+
+[node name="GameScene" type="Node2D"]
+
+[node name="Map" parent="." instance=ExtResource( "1_sfkm7" )]
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="HUD" type="Control" parent="UI"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+metadata/_edit_use_custom_anchors = true
+
+[node name="BottomBar" type="HBoxContainer" parent="UI/HUD"]
+minimum_size = Vector2(0, 128)
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_vertical = 0
+theme_override_constants/separation = 10
+metadata/_edit_layout_mode = 1
+metadata/_edit_use_custom_anchors = true
+
+[node name="Control" type="Control" parent="UI/HUD/BottomBar"]
+offset_bottom = 128.0
+
+[node name="Gun" type="TextureButton" parent="UI/HUD/BottomBar"]
+minimum_size = Vector2(90, 90)
+offset_left = 10.0
+offset_top = 19.0
+offset_right = 100.0
+offset_bottom = 109.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource( "2_bjkfu" )
+stretch_mode = 0
+
+[node name="Icon" type="TextureRect" parent="UI/HUD/BottomBar/Gun"]
+layout_direction = 1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -40.0
+offset_right = 40.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -1.5708
+pivot_offset = Vector2(40, 40)
+texture = ExtResource( "3_vct74" )
+metadata/_edit_layout_mode = 1
+metadata/_edit_use_custom_anchors = true
+
+[node name="Missile" type="TextureButton" parent="UI/HUD/BottomBar"]
+minimum_size = Vector2(90, 90)
+offset_left = 110.0
+offset_top = 19.0
+offset_right = 200.0
+offset_bottom = 109.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource( "2_bjkfu" )
+stretch_mode = 0
+
+[node name="Icon" type="TextureRect" parent="UI/HUD/BottomBar/Missile"]
+layout_direction = 1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -40.0
+offset_right = 40.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -1.5708
+pivot_offset = Vector2(40, 40)
+texture = ExtResource( "4_dw0pu" )
+metadata/_edit_layout_mode = 1
+metadata/_edit_use_custom_anchors = true

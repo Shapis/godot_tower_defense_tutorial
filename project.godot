@@ -20,6 +20,11 @@ config/icon="res://icon.png"
 window/size/viewport_width=576
 window/size/viewport_height=1024
 window/handheld/orientation=1
+mouse_cursor/custom_image="res://Assets/UI/cursor_pointer3D_shadow.png"
+
+[editor]
+
+scene/scene_naming=1
 
 [rendering]
 

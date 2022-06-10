@@ -1,13 +1,162 @@
-[gd_scene load_steps=2 format=3 uid="uid://wlee3slh1dov"]
+[gd_scene load_steps=6 format=3 uid="uid://wlee3slh1dov"]
 
+[ext_resource type="Script" path="res://Scenes/UIScenes/MainMenu.cs" id="1_2cky4"]
 [ext_resource type="Texture2D" uid="uid://jkhiqw6u7m46" path="res://Assets/UI/Art/BackGround.png" id="1_e83ka"]
+[ext_resource type="Texture2D" uid="uid://b08kpikgtbr7g" path="res://Assets/UI/Buttons/blue_button03.png" id="2_i2glx"]
+[ext_resource type="Texture2D" uid="uid://d1mxfpj6dseir" path="res://Assets/UI/Buttons/blue_button05.png" id="3_ecopc"]
+[ext_resource type="Font" uid="uid://db57ncpinah5i" path="res://Resources/Fonts/kenney_future_narrow.tres" id="4_isj78"]
 
 [node name="MainMenu" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+script = ExtResource( "1_2cky4" )
 
 [node name="Background" type="TextureRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
 texture = ExtResource( "1_e83ka" )
 ignore_texture_size = true
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+offset_left = 50.0
+offset_top = 50.0
+offset_right = 526.0
+offset_bottom = 974.0
+theme_override_constants/separation = 40
+alignment = 1
+
+[node name="BtnNewGame" type="TextureButton" parent="MarginContainer/VBoxContainer"]
+minimum_size = Vector2(380, 85)
+offset_left = 48.0
+offset_top = 134.0
+offset_right = 428.0
+offset_bottom = 219.0
+size_flags_horizontal = 4
+texture_normal = ExtResource( "2_i2glx" )
+texture_pressed = ExtResource( "3_ecopc" )
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/BtnNewGame"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.588235)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource( "4_isj78" )
+theme_override_font_sizes/font_size = 40
+text = "New Game"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BtnSettings" type="TextureButton" parent="MarginContainer/VBoxContainer"]
+minimum_size = Vector2(380, 85)
+offset_left = 48.0
+offset_top = 259.0
+offset_right = 428.0
+offset_bottom = 344.0
+size_flags_horizontal = 4
+texture_normal = ExtResource( "2_i2glx" )
+texture_pressed = ExtResource( "3_ecopc" )
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/BtnSettings"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.588235)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource( "4_isj78" )
+theme_override_font_sizes/font_size = 40
+text = "Settings
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BtnShop" type="TextureButton" parent="MarginContainer/VBoxContainer"]
+minimum_size = Vector2(380, 85)
+offset_left = 48.0
+offset_top = 384.0
+offset_right = 428.0
+offset_bottom = 469.0
+size_flags_horizontal = 4
+texture_normal = ExtResource( "2_i2glx" )
+texture_pressed = ExtResource( "3_ecopc" )
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/BtnShop"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.588235)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource( "4_isj78" )
+theme_override_font_sizes/font_size = 40
+text = "$SHOP$"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BtnAbout" type="TextureButton" parent="MarginContainer/VBoxContainer"]
+minimum_size = Vector2(380, 85)
+offset_left = 48.0
+offset_top = 509.0
+offset_right = 428.0
+offset_bottom = 594.0
+size_flags_horizontal = 4
+texture_normal = ExtResource( "2_i2glx" )
+texture_pressed = ExtResource( "3_ecopc" )
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/BtnAbout"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.588235)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource( "4_isj78" )
+theme_override_font_sizes/font_size = 40
+text = "About"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Control" type="Control" parent="MarginContainer/VBoxContainer"]
+minimum_size = Vector2(0, 30)
+offset_top = 634.0
+offset_right = 476.0
+offset_bottom = 664.0
+
+[node name="BtnQuit" type="TextureButton" parent="MarginContainer/VBoxContainer"]
+minimum_size = Vector2(380, 85)
+offset_left = 48.0
+offset_top = 704.0
+offset_right = 428.0
+offset_bottom = 789.0
+size_flags_horizontal = 4
+texture_normal = ExtResource( "2_i2glx" )
+texture_pressed = ExtResource( "3_ecopc" )
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/BtnQuit"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.588235)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource( "4_isj78" )
+theme_override_font_sizes/font_size = 40
+text = "Quit"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/BtnNewGame" to="." method="OnBtnNewGamePressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/BtnSettings" to="." method="OnBtnSettingsPressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/BtnShop" to="." method="OnBtnShopPressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/BtnAbout" to="." method="OnBtnAboutPressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/BtnQuit" to="." method="OnBtnQuitPressed"]

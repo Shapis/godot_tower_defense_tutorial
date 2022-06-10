@@ -1,0 +1,6 @@
+[gd_resource type="Font" load_steps=2 format=3 uid="uid://db57ncpinah5i"]
+
+[ext_resource type="FontData" uid="uid://s8mktsp46j8t" path="res://Assets/Fonts/kfn_40.ttf" id="1_eyaqy"]
+
+[resource]
+data/0 = ExtResource( "1_eyaqy" )
