@@ -1,19 +1,25 @@
-[gd_scene load_steps=5 format=3 uid="uid://cvss6jxrv56sp"]
+[gd_scene load_steps=7 format=3 uid="uid://cvss6jxrv56sp"]
 
+[ext_resource type="Script" path="res://Scenes/MainScenes/GameScene.cs" id="1_ovsd1"]
 [ext_resource type="PackedScene" uid="uid://cglesm4bjo0s4" path="res://Scenes/Maps/Map.tscn" id="1_sfkm7"]
 [ext_resource type="Texture2D" uid="uid://dw0p3weriujyl" path="res://Assets/UI/Buttons/blue_button12.png" id="2_bjkfu"]
+[ext_resource type="Script" path="res://Scenes/MainScenes/UI.cs" id="3_53tf0"]
 [ext_resource type="Texture2D" uid="uid://fltof5jqhd6d" path="res://Assets/Entities/Towers/towerDefense_tile249.png" id="3_vct74"]
 [ext_resource type="Texture2D" uid="uid://va16gvf6g5so" path="res://Assets/Entities/Towers/towerDefense_tile251.png" id="4_dw0pu"]
 
 [node name="GameScene" type="Node2D"]
+script = ExtResource( "1_ovsd1" )
 
 [node name="Map" parent="." instance=ExtResource( "1_sfkm7" )]
 
 [node name="UI" type="CanvasLayer" parent="."]
+script = ExtResource( "3_53tf0" )
+_towerPreviewPath = NodePath("HUD/TowerPreview")
 
 [node name="HUD" type="Control" parent="UI"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 2
 metadata/_edit_use_custom_anchors = true
 
 [node name="BottomBar" type="HBoxContainer" parent="UI/HUD"]
@@ -29,7 +35,7 @@ metadata/_edit_use_custom_anchors = true
 [node name="Control" type="Control" parent="UI/HUD/BottomBar"]
 offset_bottom = 128.0
 
-[node name="Gun" type="TextureButton" parent="UI/HUD/BottomBar"]
+[node name="BtnGun" type="TextureButton" parent="UI/HUD/BottomBar"]
 minimum_size = Vector2(90, 90)
 offset_left = 10.0
 offset_top = 19.0
@@ -40,7 +46,7 @@ size_flags_vertical = 4
 texture_normal = ExtResource( "2_bjkfu" )
 stretch_mode = 0
 
-[node name="Icon" type="TextureRect" parent="UI/HUD/BottomBar/Gun"]
+[node name="Icon" type="TextureRect" parent="UI/HUD/BottomBar/BtnGun"]
 layout_direction = 1
 anchor_left = 0.5
 anchor_top = 0.5
@@ -58,7 +64,7 @@ texture = ExtResource( "3_vct74" )
 metadata/_edit_layout_mode = 1
 metadata/_edit_use_custom_anchors = true
 
-[node name="Missile" type="TextureButton" parent="UI/HUD/BottomBar"]
+[node name="BtnMissile" type="TextureButton" parent="UI/HUD/BottomBar"]
 minimum_size = Vector2(90, 90)
 offset_left = 110.0
 offset_top = 19.0
@@ -69,7 +75,7 @@ size_flags_vertical = 4
 texture_normal = ExtResource( "2_bjkfu" )
 stretch_mode = 0
 
-[node name="Icon" type="TextureRect" parent="UI/HUD/BottomBar/Missile"]
+[node name="Icon" type="TextureRect" parent="UI/HUD/BottomBar/BtnMissile"]
 layout_direction = 1
 anchor_left = 0.5
 anchor_top = 0.5
@@ -86,3 +92,10 @@ pivot_offset = Vector2(40, 40)
 texture = ExtResource( "4_dw0pu" )
 metadata/_edit_layout_mode = 1
 metadata/_edit_use_custom_anchors = true
+
+[node name="TowerPreview" type="Control" parent="UI/HUD"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[connection signal="pressed" from="UI/HUD/BottomBar/BtnGun" to="." method="OnBuildBtnPressed" binds= ["Gun"]]
+[connection signal="pressed" from="UI/HUD/BottomBar/BtnMissile" to="." method="OnBuildBtnPressed" binds= ["Missile"]]
