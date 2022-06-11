@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://cvss6jxrv56sp"]
+[gd_scene load_steps=8 format=3 uid="uid://cvss6jxrv56sp"]
 
 [ext_resource type="Script" path="res://Scenes/MainScenes/GameScene.cs" id="1_ovsd1"]
 [ext_resource type="PackedScene" uid="uid://cglesm4bjo0s4" path="res://Scenes/Maps/Map.tscn" id="1_sfkm7"]
 [ext_resource type="Texture2D" uid="uid://dw0p3weriujyl" path="res://Assets/UI/Buttons/blue_button12.png" id="2_bjkfu"]
 [ext_resource type="Script" path="res://Scenes/MainScenes/UI.cs" id="3_53tf0"]
 [ext_resource type="Texture2D" uid="uid://fltof5jqhd6d" path="res://Assets/Entities/Towers/towerDefense_tile249.png" id="3_vct74"]
+[ext_resource type="Texture2D" uid="uid://bumicu8wsshvr" path="res://Assets/UI/range_overlay.png" id="4_72ncs"]
 [ext_resource type="Texture2D" uid="uid://va16gvf6g5so" path="res://Assets/Entities/Towers/towerDefense_tile251.png" id="4_dw0pu"]
 
 [node name="GameScene" type="Node2D"]
@@ -15,6 +16,7 @@ script = ExtResource( "1_ovsd1" )
 [node name="UI" type="CanvasLayer" parent="."]
 script = ExtResource( "3_53tf0" )
 _towerPreviewPath = NodePath("HUD/TowerPreview")
+_rangeOverlayTexture = ExtResource( "4_72ncs" )
 
 [node name="HUD" type="Control" parent="UI"]
 anchor_right = 1.0
