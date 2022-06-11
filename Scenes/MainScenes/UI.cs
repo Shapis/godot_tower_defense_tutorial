@@ -7,6 +7,8 @@ public partial class UI : CanvasLayer
     private Control? _towerPreview;
     private Node2D? _dragTower;
 
+    float _towerRange = 4;
+
     public override void _Ready()
     {
         _towerPreview = GetNode<Control>(_towerPreviewPath);
@@ -19,11 +21,20 @@ public partial class UI : CanvasLayer
 
         if (_dragTower is null)
         {
-            GD.PrintErr("Failed to load tower");
+            GD.PrintErr(this, "Failed to load tower");
             return;
         }
 
         _dragTower.Modulate = new Color("1eff0096");
+
+        Sprite2D rangeTexture = new Sprite2D();
+        float scaling = 600 / 600;
+        rangeTexture.Scale = new Vector2(scaling, scaling);
+
+
+
+
+
         _towerPreview!.AddChild(_dragTower, true);
         _towerPreview.Position = globalMousePosition;
     }

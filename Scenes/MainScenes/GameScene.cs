@@ -7,6 +7,7 @@ public partial class GameScene : Node2D
     private bool _isBuildModeActive = false;
     private bool _isBuildValid = false;
     private Vector2 _buildLocation;
+    private Vector2i _buildTile;
     private string? _buildType;
 
     public override void _Ready()
@@ -31,18 +32,21 @@ public partial class GameScene : Node2D
 
         if (inputEvent.IsActionReleased("ui_cancel") && _isBuildModeActive)
         {
-            GD.Print("here");
             CancelBuildMode();
         }
         if (inputEvent.IsActionReleased("ui_accept") && _isBuildModeActive)
         {
-            // VerifyAndBuild();
-            // CancelBuildMode();
+            VerifyAndBuild();
+            CancelBuildMode();
         }
     }
 
     private void InitiateBuildMode(string towerType)
     {
+        if (_isBuildModeActive)
+        {
+            CancelBuildMode();
+        }
         _buildType = towerType + "T1";
         _isBuildModeActive = true;
         GetNode<UI>("UI").SetTowerPreview(_buildType, GetGlobalMousePosition());
@@ -62,13 +66,7 @@ public partial class GameScene : Node2D
         var currentTile = _map.WorldToMap(mousePosition);
         var tilePosition = _map.MapToWorld(currentTile);
 
-        bool isCellATile = false;
         bool isCellBlocked = false;
-
-        if (_map.GetCellSourceId(0, currentTile, true) != -1)
-        {
-            isCellATile = true;
-        }
         for (int i = 1; i <= 3; i++)
         {
             if (_map.GetCellSourceId(i, currentTile, true) != -1)
@@ -77,14 +75,9 @@ public partial class GameScene : Node2D
             }
         }
 
-        if (!isCellATile)
+        if (!isCellBlocked)
         {
-            GetNode<UI>("UI").UpdateTowerPreview(mousePosition, "ff2031b8");
-            _isBuildValid = false;
-        }
-        else if (!isCellBlocked)
-        {
-
+            _buildTile = currentTile;
             GetNode<UI>("UI").UpdateTowerPreview(tilePosition, "1eff0096");
             _isBuildValid = true;
             _buildLocation = tilePosition;
@@ -108,10 +101,15 @@ public partial class GameScene : Node2D
     {
         if (_isBuildValid)
         {
-            Node2D newTower = GD.Load<Node2D>("res://Scenes/Towers/" + _buildType + ".tscn");
+            var newTower = GD.Load<PackedScene>("res://Scenes/Towers/" + _buildType + ".tscn").Instantiate() as Node2D;
+            if (newTower is null)
+            {
+                GD.PrintErr("Failed to load tower");
+                return;
+            }
             newTower.Position = _buildLocation;
             _map!.AddChild(newTower, true);
-
+            _map!.SetCell(3, _buildTile, 1, new Vector2i(0, 0));
         }
     }
 

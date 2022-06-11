@@ -1,13 +1,11 @@
-[gd_scene load_steps=15 format=3 uid="uid://cglesm4bjo0s4"]
+[gd_scene load_steps=14 format=3 uid="uid://cglesm4bjo0s4"]
 
 [ext_resource type="Texture2D" uid="uid://bgb7yfgp2ui47" path="res://Assets/Environments/Tilesets/terrainTiles_default.png" id="1_aga08"]
+[ext_resource type="Texture2D" uid="uid://bbhjlgoww01ml" path="res://Assets/Environments/Tilesets/Transparent64x64.png" id="2_1jbl0"]
 [ext_resource type="Texture2D" uid="uid://cojouoom5uwyg" path="res://Assets/Environments/Props/treeBrown_large.png" id="2_dpsy2"]
 [ext_resource type="Texture2D" uid="uid://cv2ba53a1g1xh" path="res://Assets/Environments/Props/treeGreen_large.png" id="3_cd041"]
 [ext_resource type="Texture2D" uid="uid://cibaw6pgv4uvt" path="res://Assets/Environments/Props/crateMetal.png" id="4_vufsc"]
 [ext_resource type="Texture2D" uid="uid://c5movf1f7vlxu" path="res://Assets/Environments/Props/crateWood.png" id="5_7n4ad"]
-[ext_resource type="PackedScene" uid="uid://hoo4sc7bofde" path="res://Scenes/Towers/GunT1.tscn" id="6_dgrwm"]
-[ext_resource type="PackedScene" uid="uid://bsgx35otcj4ky" path="res://Scenes/Towers/GunT2.tscn" id="7_sm3t5"]
-[ext_resource type="PackedScene" uid="uid://b8f4coo461dis" path="res://Scenes/Towers/MissileT1.tscn" id="8_am2us"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cr6q8"]
 texture = ExtResource( "1_aga08" )
@@ -65,6 +63,11 @@ texture_region_size = Vector2i(64, 64)
 6:1/0/terrains_peering_bit/left_side = 0
 6:1/0/terrains_peering_bit/top_side = 0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_to8a2"]
+texture = ExtResource( "2_1jbl0" )
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_u5p40"]
 texture = ExtResource( "2_dpsy2" )
 texture_region_size = Vector2i(64, 64)
@@ -95,12 +98,13 @@ sources/3 = SubResource( "TileSetAtlasSource_u5p40" )
 sources/5 = SubResource( "TileSetAtlasSource_3xbb5" )
 sources/6 = SubResource( "TileSetAtlasSource_gvlna" )
 sources/7 = SubResource( "TileSetAtlasSource_rh0w5" )
+sources/1 = SubResource( "TileSetAtlasSource_to8a2" )
 
 [node name="Map" type="TileMap"]
 tile_set = SubResource( "TileSet_45123" )
 format = 2
 layer_0/name = "Ground"
-layer_0/tile_data = PackedInt32Array(0, 0, 0, 65536, 0, 1, 131072, 0, 0, 196608, 0, 0, 262144, 0, 0, 327680, 0, 1, 393216, 0, 0, 458752, 0, 1, 524288, 0, 0, 589824, 0, 1, 655360, 0, 0, 720896, 0, 0, 786432, 0, 1, 851968, 0, 0, 1, 0, 0, 65537, 0, 0, 131073, 0, 0, 196609, 0, 0, 262145, 0, 1, 327681, 0, 1, 393217, 0, 1, 458753, 0, 0, 524289, 0, 0, 589825, 0, 0, 2, 0, 0, 65538, 0, 1, 131074, 0, 1, 196610, 0, 1, 262146, 0, 0, 327682, 0, 1, 393218, 0, 0, 458754, 0, 1, 524290, 0, 0, 589826, 0, 1, 3, 0, 0, 65539, 0, 1, 131075, 0, 1, 196611, 0, 0, 262147, 0, 0, 327683, 0, 0, 393219, 0, 0, 458755, 0, 0, 524291, 0, 1, 589827, 0, 1, 4, 0, 0, 65540, 0, 0, 131076, 0, 1, 196612, 0, 0, 262148, 0, 0, 327684, 0, 0, 393220, 0, 1, 458756, 0, 0, 524292, 0, 0, 589828, 0, 0, 5, 0, 0, 65541, 0, 1, 131077, 0, 1, 196613, 0, 1, 262149, 0, 1, 327685, 0, 0, 393221, 0, 0, 458757, 0, 0, 524293, 0, 1, 589829, 0, 1, 655365, 0, 1, 720901, 0, 1, 786437, 0, 1, 851973, 0, 1, 6, 0, 1, 65542, 0, 0, 131078, 0, 0, 196614, 0, 0, 262150, 0, 0, 327686, 0, 1, 393222, 0, 1, 458758, 0, 1, 524294, 0, 0, 589830, 0, 0, 655366, 0, 0, 720902, 0, 1, 786438, 0, 1, 851974, 0, 1, 7, 0, 1, 65543, 0, 0, 131079, 0, 1, 196615, 0, 0, 262151, 0, 0, 327687, 0, 0, 393223, 0, 0, 458759, 0, 1, 524295, 0, 1, 589831, 0, 0, 655367, 0, 0, 720903, 0, 0, 786439, 0, 0, 851975, 0, 1, 8, 0, 1, 65544, 0, 1, 131080, 0, 1, 196616, 0, 0, 262152, 0, 0, 327688, 0, 0, 393224, 0, 1, 458760, 0, 1, 524296, 0, 1, 589832, 0, 1, 655368, 0, 1, 720904, 0, 1, 786440, 0, 1, 851976, 0, 0, 655361, 0, 0, 720897, 0, 0, 786433, 0, 0, 851969, 0, 1, 655362, 0, 0, 720898, 0, 1, 786434, 0, 0, 851970, 0, 0, 655363, 0, 0, 720899, 0, 0, 786435, 0, 1, 851971, 0, 1, 655364, 0, 0, 720900, 0, 0, 786436, 0, 1, 851972, 0, 1)
+layer_0/tile_data = PackedInt32Array(0, 0, 0, 65536, 0, 1, 131072, 0, 0, 1, 0, 0, 65537, 0, 0, 131073, 0, 0, 2, 0, 0, 65538, 0, 1, 131074, 0, 1, 3, 0, 0, 65539, 0, 1, 131075, 0, 1, 4, 0, 0, 65540, 0, 0, 131076, 0, 1, 5, 0, 0, 65541, 0, 1, 131077, 0, 1, 6, 0, 1, 65542, 0, 0, 131078, 0, 0, 7, 0, 1, 65543, 0, 0, 131079, 0, 1, 8, 0, 1, 65544, 0, 1, 131080, 0, 1, 196608, 0, 0, 262144, 0, 0, 327680, 0, 1, 393216, 0, 0, 458752, 0, 1, 524288, 0, 0, 589824, 0, 1, 655360, 0, 0, 720896, 0, 0, 786432, 0, 1, 851968, 0, 0, 196609, 0, 0, 262145, 0, 1, 327681, 0, 1, 393217, 0, 1, 458753, 0, 0, 524289, 0, 0, 589825, 0, 0, 655361, 0, 0, 720897, 0, 0, 786433, 0, 0, 851969, 0, 1, 196610, 0, 1, 262146, 0, 0, 327682, 0, 1, 393218, 0, 0, 458754, 0, 1, 524290, 0, 0, 589826, 0, 1, 655362, 0, 0, 720898, 0, 1, 786434, 0, 0, 851970, 0, 0, 196611, 0, 0, 262147, 0, 0, 327683, 0, 0, 393219, 0, 0, 458755, 0, 0, 524291, 0, 1, 589827, 0, 1, 655363, 0, 0, 720899, 0, 0, 786435, 0, 1, 851971, 0, 1, 196612, 0, 0, 262148, 0, 0, 327684, 0, 0, 393220, 0, 1, 458756, 0, 0, 524292, 0, 0, 589828, 0, 0, 655364, 0, 0, 720900, 0, 0, 786436, 0, 1, 851972, 0, 1, 196613, 0, 1, 262149, 0, 1, 327685, 0, 0, 393221, 0, 0, 458757, 0, 0, 524293, 0, 1, 589829, 0, 1, 655365, 0, 1, 720901, 0, 1, 786437, 0, 1, 851973, 0, 1, 196614, 0, 0, 262150, 0, 0, 327686, 0, 1, 393222, 0, 1, 458758, 0, 1, 524294, 0, 0, 589830, 0, 0, 655366, 0, 0, 720902, 0, 1, 786438, 0, 1, 851974, 0, 1, 196615, 0, 0, 262151, 0, 0, 327687, 0, 0, 393223, 0, 0, 458759, 0, 1, 524295, 0, 1, 589831, 0, 0, 655367, 0, 0, 720903, 0, 0, 786439, 0, 0, 851975, 0, 1, 196616, 0, 0, 262152, 0, 0, 327688, 0, 0, 393224, 0, 1, 458760, 0, 1, 524296, 0, 1, 589832, 0, 1, 655368, 0, 1, 720904, 0, 1, 786440, 0, 1, 851976, 0, 0)
 layer_1/name = "Roads"
 layer_1/enabled = true
 layer_1/modulate = Color(1, 1, 1, 1)
@@ -124,12 +128,3 @@ layer_3/z_index = 0
 layer_3/tile_data = PackedInt32Array()
 
 [node name="Towers" type="Node" parent="."]
-
-[node name="GunT1" parent="Towers" instance=ExtResource( "6_dgrwm" )]
-position = Vector2(110, 252)
-
-[node name="GunT2" parent="Towers" instance=ExtResource( "7_sm3t5" )]
-position = Vector2(206, 368)
-
-[node name="MissileT1" parent="Towers" instance=ExtResource( "8_am2us" )]
-position = Vector2(462, 433)
