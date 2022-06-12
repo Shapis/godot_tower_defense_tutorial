@@ -1,5 +1,7 @@
 using Godot;
 using System;
+using System.Collections;
+using System.Collections.Generic;
 
 public partial class GameScene : Node2D
 {
@@ -9,12 +11,14 @@ public partial class GameScene : Node2D
     private Vector2 _buildLocation;
     private Vector2i _buildTile;
     private string? _buildType;
+    private int _currentWave = 0;
 
+    private int _enemiesInWave = 0;
     public override void _Ready()
     {
         _map = GetNode<TileMap>("Map");
 
-
+        StartNextWave();
 
     }
 
@@ -41,6 +45,43 @@ public partial class GameScene : Node2D
         }
     }
 
+    #region Wave Methods
+
+    private List<Tuple<string, float>> RetrieveWaveData()
+    {
+        var waveData = new List<Tuple<string, float>>();
+        waveData.Add(new Tuple<string, float>("BlueTank", 0.7f));
+        waveData.Add(new Tuple<string, float>("BlueTank", 0.1f));
+        _currentWave++;
+        _enemiesInWave = waveData.Count;
+        return waveData;
+    }
+
+    private async void StartNextWave()
+    {
+        var waveData = RetrieveWaveData();
+        await ToSignal(GetTree().CreateTimer(0.2), "timeout");
+        SpawnEnemies(waveData);
+    }
+
+    private async void SpawnEnemies(List<Tuple<string, float>> waveData)
+    {
+        foreach (var item in waveData)
+        {
+            var newEnemy = GD.Load<PackedScene>("res://Scenes/Enemies/" + item.Item1 + ".tscn").Instantiate() as BaseEnemy;
+            if (_map is null)
+            {
+                GD.Print(this, "Map is null");
+                return;
+            }
+            _map.GetNode<Path2D>("Path2D").AddChild(newEnemy, true);
+            await ToSignal(GetTree().CreateTimer(1), "timeout");
+        }
+    }
+
+    #endregion
+
+    #region Building Methods
     private void InitiateBuildMode(string towerType)
     {
         if (_isBuildModeActive)
@@ -117,4 +158,5 @@ public partial class GameScene : Node2D
     {
         InitiateBuildMode(nodeName);
     }
+    #endregion
 }

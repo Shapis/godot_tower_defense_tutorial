@@ -9,15 +9,11 @@ public abstract partial class BaseTower : Node2D
     [Export] public float Damage { get; private set; } = 20f;
 
 
-    public override void _PhysicsProcess(float delta)
+    public sealed override void _PhysicsProcess(float delta)
     {
         Turn();
     }
 
-    protected virtual void abc()
-    {
-
-    }
 
     private void Turn()
     {

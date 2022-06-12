@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cglesm4bjo0s4"]
+[gd_scene load_steps=15 format=3 uid="uid://cglesm4bjo0s4"]
 
 [ext_resource type="Texture2D" uid="uid://bgb7yfgp2ui47" path="res://Assets/Environments/Tilesets/terrainTiles_default.png" id="1_aga08"]
 [ext_resource type="Texture2D" uid="uid://bbhjlgoww01ml" path="res://Assets/Environments/Tilesets/Transparent64x64.png" id="2_1jbl0"]
@@ -100,6 +100,12 @@ sources/6 = SubResource( "TileSetAtlasSource_gvlna" )
 sources/7 = SubResource( "TileSetAtlasSource_rh0w5" )
 sources/1 = SubResource( "TileSetAtlasSource_to8a2" )
 
+[sub_resource type="Curve2D" id="Curve2D_qsyre"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 160, -32, 0, -27.7183, 0, 27.7183, 159, 380, -28.3482, 0, 28.3482, 0, 199, 417, -20.7887, -0.31498, 20.7887, 0.31498, 386, 416, -0.31498, -23.9385, 0.31498, 23.9385, 417, 454, -0.222725, -22.0497, 0.222725, 22.0497, 417, 701, 25.8361, 0.222725, -25.8361, -0.222725, 379, 736, 0, 0, 0, 0, 288, 736)
+}
+point_count = 8
+
 [node name="Map" type="TileMap"]
 tile_set = SubResource( "TileSet_45123" )
 format = 2
@@ -126,5 +132,9 @@ layer_3/y_sort_enabled = false
 layer_3/y_sort_origin = 0
 layer_3/z_index = 0
 layer_3/tile_data = PackedInt32Array()
+
+[node name="Path2D" type="Path2D" parent="."]
+z_index = 1
+curve = SubResource( "Curve2D_qsyre" )
 
 [node name="Towers" type="Node" parent="."]
