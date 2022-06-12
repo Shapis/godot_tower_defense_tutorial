@@ -6,7 +6,6 @@ using System.Linq;
 
 public abstract partial class BaseTower : Node2D
 {
-
     [Export] public float Range { get; private set; } = 600f;
     [Export] public float RateOfFire { get; private set; } = 1f;
     [Export] public float Damage { get; private set; } = 20f;
@@ -15,6 +14,7 @@ public abstract partial class BaseTower : Node2D
     private CollisionShape2D? _rangeCollisionShape2D;
     private List<BaseEnemy> _targets = new List<BaseEnemy>();
     private BaseEnemy? _currentTarget;
+    private bool _isReloaded = true;
 
 
     public sealed override void _Ready()
@@ -35,12 +35,24 @@ public abstract partial class BaseTower : Node2D
         {
             SelectTarget();
             Turn();
+            if (_isReloaded)
+            {
+                Shoot();
+            }
         }
         else
         {
             _currentTarget = null;
         }
 
+    }
+
+    private async void Shoot()
+    {
+        _isReloaded = false;
+        _currentTarget!.OnHit(Damage);
+        await ToSignal(GetTree().CreateTimer(RateOfFire), "timeout");
+        _isReloaded = true;
     }
 
     private void SelectTarget()

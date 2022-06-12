@@ -44,6 +44,7 @@ public partial class UI : CanvasLayer
         }
 
         _dragTower.Modulate = new Color("1eff0096");
+        _dragTower.Rotate(-Mathf.Pi / 2);
 
         _rangeTexture = new Sprite2D();
         float scaling = _dragTower.Range / 600f;
