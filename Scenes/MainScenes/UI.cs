@@ -3,6 +3,8 @@ using System;
 
 public partial class UI : CanvasLayer
 {
+    [Signal] public event Func<bool>? OnPausePlayPressedEvent;
+    [Signal] public event Action? OnSpeedUpPressedEvent;
     [Export] private NodePath? _towerPreviewPath;
     private Control? _towerPreview;
     [Export] private Texture2D? _rangeOverlayTexture;
@@ -14,6 +16,22 @@ public partial class UI : CanvasLayer
         _towerPreview = GetNode<Control>(_towerPreviewPath);
 
     }
+
+    #region Game Control Methods
+    private void OnPausePlayPressed()
+    {
+        if (OnPausePlayPressedEvent?.Invoke() == true)
+        {
+            return;
+        }
+        GetTree().Paused = !GetTree().Paused;
+    }
+
+    private void OnSpeedUpPressed()
+    {
+        EmitSignal(nameof(OnSpeedUpPressedEvent));
+    }
+    #endregion
 
     internal void SetTowerPreview(string towerType, Vector2 globalMousePosition)
     {

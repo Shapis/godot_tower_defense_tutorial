@@ -19,6 +19,4 @@ public abstract partial class BaseEnemy : PathFollow2D
     {
         Offset += Speed * delta;
     }
-
-
 }

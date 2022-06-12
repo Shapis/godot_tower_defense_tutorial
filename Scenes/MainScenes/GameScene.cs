@@ -12,14 +12,45 @@ public partial class GameScene : Node2D
     private Vector2i _buildTile;
     private string? _buildType;
     private int _currentWave = 0;
-
     private int _enemiesInWave = 0;
     public override void _Ready()
     {
         _map = GetNode<TileMap>("Map");
+        GetNode<UI>("UI").OnPausePlayPressedEvent += OnPausePlayPressed;
 
-        StartNextWave();
+    }
 
+    private bool OnPausePlayPressed()
+    {
+        if (_isBuildModeActive)
+        {
+            CancelBuildMode();
+        }
+        if (_currentWave == 0)
+        {
+            StartNextWave();
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    private void OnUiOnSpeedUpPressed()
+    {
+        if (_isBuildModeActive)
+        {
+            CancelBuildMode();
+        }
+        if (Engine.TimeScale == 2f)
+        {
+            Engine.TimeScale = 1f;
+        }
+        else
+        {
+            Engine.TimeScale = 2f;
+        }
     }
 
     public override void _Process(float delta)
@@ -50,15 +81,15 @@ public partial class GameScene : Node2D
     private List<Tuple<string, float>> RetrieveWaveData()
     {
         var waveData = new List<Tuple<string, float>>();
-        waveData.Add(new Tuple<string, float>("BlueTank", 0.7f));
+        waveData.Add(new Tuple<string, float>("BlueTank", 1.7f));
         waveData.Add(new Tuple<string, float>("BlueTank", 0.1f));
-        _currentWave++;
         _enemiesInWave = waveData.Count;
         return waveData;
     }
 
     private async void StartNextWave()
     {
+        _currentWave++;
         var waveData = RetrieveWaveData();
         await ToSignal(GetTree().CreateTimer(0.2), "timeout");
         SpawnEnemies(waveData);
@@ -75,7 +106,7 @@ public partial class GameScene : Node2D
                 return;
             }
             _map.GetNode<Path2D>("Path2D").AddChild(newEnemy, true);
-            await ToSignal(GetTree().CreateTimer(1), "timeout");
+            await ToSignal(GetTree().CreateTimer(item.Item2), "timeout");
         }
     }
 
