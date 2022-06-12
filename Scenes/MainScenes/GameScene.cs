@@ -173,13 +173,15 @@ public partial class GameScene : Node2D
     {
         if (_isBuildValid)
         {
-            var newTower = GD.Load<PackedScene>("res://Scenes/Towers/" + _buildType + ".tscn").Instantiate() as Node2D;
+            var newTower = GD.Load<PackedScene>("res://Scenes/Towers/" + _buildType + ".tscn").Instantiate() as BaseTower;
             if (newTower is null)
             {
                 GD.PrintErr("Failed to load tower");
                 return;
             }
             newTower.Position = _buildLocation;
+            newTower.IsBuilt = true;
+            newTower.Rotate(-Mathf.Pi / 2);
             _map!.AddChild(newTower, true);
             _map!.SetCell(3, _buildTile, 1, new Vector2i(0, 0));
         }

@@ -1,11 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://bsgx35otcj4ky"]
+[gd_scene load_steps=5 format=3 uid="uid://bsgx35otcj4ky"]
 
 [ext_resource type="Script" path="res://Scenes/Towers/GunT2.cs" id="1_cquts"]
 [ext_resource type="Texture2D" uid="uid://d0e25gjyi2uaw" path="res://Assets/Entities/Towers/towerDefense_tile181.png" id="1_fwy1x"]
 [ext_resource type="Texture2D" uid="uid://eo5g1o7lkghg" path="res://Assets/Entities/Towers/towerDefense_tile250.png" id="2_mr7kb"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_vo0w5"]
+radius = 175.0
+
 [node name="GunT2" type="Node2D"]
 script = ExtResource( "1_cquts" )
+_rangeCollisionShape2DPath = NodePath("Range/CollisionShape2D")
 
 [node name="Base" type="Sprite2D" parent="."]
 texture = ExtResource( "1_fwy1x" )
@@ -19,3 +23,11 @@ position = Vector2(41, 6)
 
 [node name="Muzzle2" type="Position2D" parent="Turret"]
 position = Vector2(41, -6)
+
+[node name="Range" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Range"]
+shape = SubResource( "CircleShape2D_vo0w5" )
+
+[connection signal="body_entered" from="Range" to="." method="OnRangeBodyEntered"]
+[connection signal="body_exited" from="Range" to="." method="OnRangeBodyExited"]
