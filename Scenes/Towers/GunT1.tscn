@@ -1,16 +1,40 @@
-[gd_scene load_steps=5 format=3 uid="uid://hoo4sc7bofde"]
+[gd_scene load_steps=8 format=3 uid="uid://hoo4sc7bofde"]
 
 [ext_resource type="Script" path="res://Scenes/Towers/GunT1.cs" id="1_0rde3"]
 [ext_resource type="Texture2D" uid="uid://d0e25gjyi2uaw" path="res://Assets/Entities/Towers/towerDefense_tile181.png" id="1_a8pqr"]
 [ext_resource type="Texture2D" uid="uid://fltof5jqhd6d" path="res://Assets/Entities/Towers/towerDefense_tile249.png" id="2_616bf"]
+[ext_resource type="Texture2D" uid="uid://b5g2gtka8kwe" path="res://Assets/Effects/towerDefense_tile297.png" id="4_wedk6"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5bhwa"]
 radius = 175.0
 
+[sub_resource type="Animation" id="Animation_1dhul"]
+resource_name = "Fire"
+length = 0.15
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Turret/Muzzle/Flash:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_72aqw"]
+_data = {
+"Fire": SubResource( "Animation_1dhul" )
+}
+
 [node name="GunT1" type="Node2D"]
 script = ExtResource( "1_0rde3" )
-Range = 200.0
+Range = 300.0
 _rangeCollisionShape2DPath = NodePath("Range/CollisionShape2D")
+_animationPlayerPath = NodePath("AnimationPlayer")
 
 [node name="Base" type="Sprite2D" parent="."]
 texture = ExtResource( "1_a8pqr" )
@@ -22,10 +46,21 @@ offset = Vector2(12, 0)
 [node name="Muzzle" type="Position2D" parent="Turret"]
 position = Vector2(43, 0)
 
+[node name="Flash" type="Sprite2D" parent="Turret/Muzzle"]
+visible = false
+position = Vector2(10, 0)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource( "4_wedk6" )
+
 [node name="Range" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Range"]
 shape = SubResource( "CircleShape2D_5bhwa" )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource( "AnimationLibrary_72aqw" )
+}
 
 [connection signal="body_entered" from="Range" to="." method="OnRangeBodyEntered"]
 [connection signal="body_exited" from="Range" to="." method="OnRangeBodyExited"]

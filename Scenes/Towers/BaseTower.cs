@@ -12,6 +12,8 @@ public abstract partial class BaseTower : Node2D
     public bool IsBuilt { get; set; } = false;
     [Export] private NodePath? _rangeCollisionShape2DPath;
     private CollisionShape2D? _rangeCollisionShape2D;
+    [Export] private NodePath? _animationPlayerPath;
+    protected AnimationPlayer? AnimationPlayer { get; private set; }
     private List<BaseEnemy> _targets = new List<BaseEnemy>();
     private BaseEnemy? _currentTarget;
     private bool _isReloaded = true;
@@ -19,6 +21,7 @@ public abstract partial class BaseTower : Node2D
 
     public sealed override void _Ready()
     {
+        AnimationPlayer = GetNode<AnimationPlayer>(_animationPlayerPath);
         _rangeCollisionShape2D = GetNode<CollisionShape2D>(_rangeCollisionShape2DPath);
         CircleShape2D? circleShape = _rangeCollisionShape2D.Shape as CircleShape2D;
         if (circleShape is null)
@@ -27,17 +30,28 @@ public abstract partial class BaseTower : Node2D
             return;
         }
         circleShape.Radius = Range * 0.5f;
+
+        __Ready();
     }
+
+    protected virtual void __Ready()
+    {
+
+    }
+
 
     public sealed override void _PhysicsProcess(float delta)
     {
         if (_targets.Count > 0 && IsBuilt)
         {
             SelectTarget();
-            Turn();
-            if (_isReloaded)
+            if (!AnimationPlayer!.IsPlaying())
             {
-                Shoot();
+                Turn();
+            }
+            if (_isReloaded && _currentTarget is not null)
+            {
+                StartShootRoutine(_currentTarget);
             }
         }
         else
@@ -47,13 +61,16 @@ public abstract partial class BaseTower : Node2D
 
     }
 
-    private async void Shoot()
+    private async void StartShootRoutine(BaseEnemy target)
     {
         _isReloaded = false;
-        _currentTarget!.OnHit(Damage);
+        Shoot(target);
         await ToSignal(GetTree().CreateTimer(RateOfFire), "timeout");
         _isReloaded = true;
     }
+
+    protected abstract void Shoot(BaseEnemy target);
+
 
     private void SelectTarget()
     {
