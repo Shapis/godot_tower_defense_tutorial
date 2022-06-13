@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cvss6jxrv56sp"]
+[gd_scene load_steps=14 format=3 uid="uid://cvss6jxrv56sp"]
 
 [ext_resource type="Script" path="res://Scenes/MainScenes/GameScene.cs" id="1_ovsd1"]
 [ext_resource type="PackedScene" uid="uid://cglesm4bjo0s4" path="res://Scenes/Maps/Map.tscn" id="1_sfkm7"]
@@ -10,6 +10,9 @@
 [ext_resource type="Texture2D" uid="uid://bdpb08isj3lw6" path="res://Assets/UI/Icons/right.png" id="5_2b2yc"]
 [ext_resource type="Texture2D" uid="uid://cl2sy7lth73a1" path="res://Assets/UI/Icons/pause.png" id="6_j0k3s"]
 [ext_resource type="Texture2D" uid="uid://dmlllwhqqsdyx" path="res://Assets/UI/Icons/fastForward.png" id="8_nqrmq"]
+[ext_resource type="Font" uid="uid://db57ncpinah5i" path="res://Resources/Fonts/kenney_future_narrow.tres" id="11_6gkwr"]
+[ext_resource type="Texture2D" uid="uid://c8v31l1yendta" path="res://Assets/UI/HPbar.jpg" id="12_8skfk"]
+[ext_resource type="Texture2D" uid="uid://c0eo1qk7tjn6d" path="res://Assets/UI/Icons/home.png" id="12_ddsuc"]
 
 [node name="GameScene" type="Node2D"]
 script = ExtResource( "1_ovsd1" )
@@ -132,6 +135,68 @@ metadata/_edit_use_custom_anchors = true
 [node name="TowerPreview" type="Control" parent="UI/HUD"]
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="InfoBar" type="ColorRect" parent="UI/HUD"]
+self_modulate = Color(0, 0, 0, 0.470588)
+minimum_size = Vector2(0, 60)
+anchor_right = 1.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/HUD/InfoBar"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Symbol" type="Label" parent="UI/HUD/InfoBar/HBoxContainer"]
+minimum_size = Vector2(120, 60)
+offset_right = 120.0
+offset_bottom = 60.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.705882)
+theme_override_fonts/font = ExtResource( "11_6gkwr" )
+theme_override_font_sizes/font_size = 50
+text = "$
+"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Money" type="Label" parent="UI/HUD/InfoBar/HBoxContainer"]
+minimum_size = Vector2(100, 60)
+offset_left = 124.0
+offset_right = 224.0
+offset_bottom = 60.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.705882)
+theme_override_fonts/font = ExtResource( "11_6gkwr" )
+theme_override_font_sizes/font_size = 30
+text = "9999
+"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Icon" type="TextureRect" parent="UI/HUD/InfoBar/HBoxContainer"]
+minimum_size = Vector2(60, 60)
+offset_left = 228.0
+offset_right = 288.0
+offset_bottom = 60.0
+texture = ExtResource( "12_ddsuc" )
+ignore_texture_size = true
+
+[node name="HealthBar" type="TextureProgressBar" parent="UI/HUD/InfoBar/HBoxContainer"]
+minimum_size = Vector2(0, 30)
+offset_left = 292.0
+offset_top = 15.0
+offset_right = 572.0
+offset_bottom = 45.0
+size_flags_horizontal = 3
+size_flags_vertical = 4
+value = 100.0
+nine_patch_stretch = true
+texture_under = ExtResource( "12_8skfk" )
+texture_progress = ExtResource( "12_8skfk" )
+tint_under = Color(0.215686, 0.215686, 0.215686, 1)
+tint_progress = Color(0.305882, 1, 0.0862745, 1)
+
+[node name="Control" type="Control" parent="UI/HUD/InfoBar/HBoxContainer"]
+offset_left = 576.0
+offset_right = 576.0
+offset_bottom = 60.0
 
 [connection signal="OnSpeedUpPressedEvent" from="UI" to="." method="OnUiOnSpeedUpPressed"]
 [connection signal="pressed" from="UI/HUD/BottomBar/PausePlay" to="UI" method="OnPausePlayPressed"]
